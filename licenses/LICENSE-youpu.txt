@@ -1,0 +1,20 @@
+Commercial License
+
+Copyright (c) 2022 Shanghai YOUPU Technology Co., Ltd. all rights reserved
+
+[copyright notice]
+
+The copyright of this document belongs to YOUPU technology alone.
+Without the prior written permission of YOUPU technology, any subject 
+shall not copy, modify, 
+plagiarize or disseminate all or part of this document in any form.
+
+[service statement]
+
+This document aims to introduce the overall overview of all or part of 
+the products and services of YOUPU technology to customers. 
+The contents of some products and services may be adjusted. 
+The types and service standards of YOUPU products and services purchased 
+by you shall be agreed in the business contract between you and YOUPU technology. 
+Unless otherwise agreed by both parties, YOUPU technology makes no express 
+or model commitment or guarantee for the content of this document.
