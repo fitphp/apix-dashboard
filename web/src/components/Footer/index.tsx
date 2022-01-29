@@ -14,20 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/**
+ * Commercial License
+ * Copyright (c) 2022 Shanghai YOUPU Technology Co., Ltd. all rights reserved
+ */
 import React from 'react';
-import { GithubOutlined } from '@ant-design/icons';
 import { DefaultFooter } from '@ant-design/pro-layout';
 
 export default () => (
   <DefaultFooter
-    copyright="2021 Apache APISIX"
+    copyright="2022 APIX"
     links={[
-      {
-        key: 'GitHub',
-        title: <GithubOutlined />,
-        href: 'https://github.com/apache/apisix',
-        blankTarget: true,
-      },
+      // {
+      //   key: '官网',
+      //   title: "官网",
+      //   href: 'https://gateman.liulimi.com',
+      //   blankTarget: true,
+      // },
     ]}
   />
 );

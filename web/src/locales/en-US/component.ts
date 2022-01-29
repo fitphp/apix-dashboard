@@ -86,4 +86,8 @@ export default {
 
   'component.global.invalidYaml': 'Invalid Yaml data',
   'component.global.invalidJson': 'Invalid Json data',
+
+  // APIX
+  'component.global.title': 'APIX Dashboard',
+  'component.global.subtitle': 'Cloud-Native Microservices API Gateway',
 };

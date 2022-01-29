@@ -1,6 +1,6 @@
 {
-  "name": "Apache APISIX Dashboard",
-  "short_name": "Apache APISIX Dashboard",
+  "name": "APIX Dashboard",
+  "short_name": "APIX Dashboard",
   "display": "standalone",
   "start_url": "./?utm_source=homescreen",
   "theme_color": "#002140",

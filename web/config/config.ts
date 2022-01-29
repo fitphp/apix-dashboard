@@ -41,7 +41,7 @@ export default defineConfig({
   },
   routes,
   layout: {
-    name: 'APISIX Dashboard',
+    name: 'APIX Dashboard',
     locale: true,
     logo: '/favicon.png',
   },

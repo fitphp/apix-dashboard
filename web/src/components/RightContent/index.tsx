@@ -21,8 +21,11 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
+/**
+ * Commercial License
+ * Copyright (c) 2022 Shanghai YOUPU Technology Co., Ltd. all rights reserved
+ */
 import { Tooltip, Tag, Space } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
 import React from 'react';
 import { useModel, SelectLang } from 'umi';
 
@@ -53,13 +56,6 @@ const GlobalHeaderRight: React.FC = () => {
 
   return (
     <Space className={className}>
-      <a href="https://apisix.apache.org/docs/apisix/getting-started" target="_blank">
-        <Tooltip title="Documentation">
-          <span className={styles.action}>
-            <QuestionCircleOutlined />
-          </span>
-        </Tooltip>
-      </a>
       <Avatar />
       {REACT_APP_ENV && (
         <span>

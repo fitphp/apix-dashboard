@@ -14,23 +14,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# ========================================================================
+# Commercial licenses
+# ========================================================================
+# Copyright (c) 2022 Shanghai YOUPU Technology Co., Ltd. all rights reserved
+#
 FROM alpine:latest as pre-build
 
-ARG APISIX_DASHBOARD_VERSION=master
+ARG GATEMAN_VERSION=master
 
 RUN set -x \
     && apk add --no-cache --virtual .builddeps git \
-    && git clone https://github.com/apache/apisix-dashboard.git -b ${APISIX_DASHBOARD_VERSION} /usr/local/apisix-dashboard \
-    && cd /usr/local/apisix-dashboard && git clean -Xdf \
+    && git clone https://github.com/apache/apisix-dashboard.git -b ${GATEMAN_VERSION} /usr/local/gateman \
+    && cd /usr/local/gateman && git clean -Xdf \
     && rm -f ./.githash && git log --pretty=format:"%h" -1 > ./.githash
 
 FROM golang:1.14 as api-builder
 
 ARG ENABLE_PROXY=false
 
-WORKDIR /usr/local/apisix-dashboard
+WORKDIR /usr/local/gateman
 
-COPY --from=pre-build /usr/local/apisix-dashboard .
+COPY --from=pre-build /usr/local/gateman .
 
 RUN if [ "$ENABLE_PROXY" = "true" ] ; then go env -w GOPROXY=https://goproxy.io,direct ; fi \
     && go env -w GO111MODULE=on \
@@ -40,11 +45,11 @@ FROM node:14-alpine as fe-builder
 
 ARG ENABLE_PROXY=false
 
-WORKDIR /usr/local/apisix-dashboard
+WORKDIR /usr/local/gateman
 
-COPY --from=pre-build /usr/local/apisix-dashboard .
+COPY --from=pre-build /usr/local/gateman .
 
-WORKDIR /usr/local/apisix-dashboard/web
+WORKDIR /usr/local/gateman/web
 
 RUN if [ "$ENABLE_PROXY" = "true" ] ; then yarn config set registry https://registry.npm.taobao.org/ ; fi \
     && yarn install \
@@ -56,14 +61,14 @@ ARG ENABLE_PROXY=false
 
 RUN if [ "$ENABLE_PROXY" = "true" ] ; then sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories ; fi
 
-WORKDIR /usr/local/apisix-dashboard
+WORKDIR /usr/local/gateman
 
-COPY --from=api-builder /usr/local/apisix-dashboard/output/ ./
+COPY --from=api-builder /usr/local/gateman/output/ ./
 
-COPY --from=fe-builder /usr/local/apisix-dashboard/output/ ./
+COPY --from=fe-builder /usr/local/gateman/output/ ./
 
 RUN mkdir logs
 
 EXPOSE 9000
 
-CMD [ "/usr/local/apisix-dashboard/manager-api" ]
+CMD [ "/usr/local/gateman/manager-api" ]

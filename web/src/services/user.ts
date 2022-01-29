@@ -14,11 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/**
+ * Commercial License
+ * Copyright (c) 2022 Shanghai YOUPU Technology Co., Ltd. all rights reserved
+ */
 import logo from '@/assets/logo.svg';
 
 export async function queryCurrent(): Promise<API.CurrentUser> {
   return Promise.resolve({
-    name: 'APISIX User',
+    name: 'Admin',
     avatar: logo,
     userid: '00000001',
     access: 'admin',

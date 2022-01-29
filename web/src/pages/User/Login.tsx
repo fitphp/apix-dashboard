@@ -88,11 +88,6 @@ const Page: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.lang}>
-        <div className={styles.github}>
-          <a target="_blank" href="https://apisix.apache.org">
-            <GithubOutlined />
-          </a>
-        </div>
         <SelectLang />
       </div>
       <div className={styles.content}>
@@ -103,9 +98,9 @@ const Page: React.FC = () => {
             </Link>
           </div>
           <div className={styles.desc}>
-            Apache APISIX Dashboard
-            <br />
-            Cloud-Native Microservices API Gateway
+          {formatMessage({ id: 'component.global.title' })}
+            <br/>
+          {formatMessage({ id: 'component.global.subtitle' })}
           </div>
         </div>
         <div className={styles.main}>

@@ -15,6 +15,10 @@
  * limitations under the License.
  */
 /* eslint-disable no-undef */
+/**
+ * Commercial License
+ * Copyright (c) 2022 Shanghai YOUPU Technology Co., Ltd. all rights reserved
+ */
 
 context('Logout Test', () => {
   beforeEach(() => {
@@ -23,7 +27,7 @@ context('Logout Test', () => {
 
   it('logout', () => {
     cy.visit('/');
-    cy.contains('.anticon', 'APISIX User', {
+    cy.contains('.anticon', 'User', {
       matchCase: false,
     }).click({
       force: true,

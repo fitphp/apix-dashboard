@@ -19,6 +19,6 @@ export default {
   'page.systemStatus.select.placeholder': '请选择节点',
   'page.systemStatus.desc': '需启用相关插件，才能获取信息。',
   'page.systemStatus.link': '如何启用？',
-  'page.systemStatus.dashboardInfo': 'Dashboard',
-  'page.systemStatus.nodeInfo': 'APISIX 节点',
+  'page.systemStatus.dashboardInfo': '控制面板',
+  'page.systemStatus.nodeInfo': '网关节点',
 };

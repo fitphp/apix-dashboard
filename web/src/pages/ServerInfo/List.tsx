@@ -74,12 +74,12 @@ const ServerInfo: React.FC = () => {
           <table className={styles.table}>
             <tbody>
               <tr>
-                <td>commit_hash</td>
-                <td>{commitHash}</td>
+                <td>version</td>
+                <td>{dashboardVersion}</td>
               </tr>
               <tr>
-                <td>dashboard_version</td>
-                <td>{dashboardVersion}</td>
+                <td>commit_hash</td>
+                <td>{commitHash}</td>
               </tr>
             </tbody>
           </table>
@@ -112,14 +112,7 @@ const ServerInfo: React.FC = () => {
               </Select>
             </Form.Item>
             <Form.Item style={{ marginBottom: 0, fontSize: '12px', color: '#00000073' }}>
-              {formatMessage({ id: 'page.systemStatus.desc' })}&nbsp;
-              <a
-                href="https://apisix.apache.org/docs/apisix/plugins/server-info"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {formatMessage({ id: 'page.systemStatus.link' })}
-              </a>
+              {formatMessage({ id: 'page.systemStatus.desc' })}
             </Form.Item>
           </Form>
         </div>

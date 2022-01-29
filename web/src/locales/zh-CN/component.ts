@@ -81,4 +81,8 @@ export default {
 
   'component.global.invalidYaml': '无效的 Yaml 数据',
   'component.global.invalidJson': '无效的 Json 数据',
+
+  // APIX
+  'component.global.title': 'APIX 管理平台',
+  'component.global.subtitle': '云原生微服务API网关',
 };
