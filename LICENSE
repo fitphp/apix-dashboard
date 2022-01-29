@@ -200,6 +200,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
+========================================================================
+Commercial licenses
+========================================================================
+APIX Dashboard Subcomponents:
+
+The following components are provided under the Commercial License. 
+See project link for details. 
+The text of each license is also included at licenses/LICENSE-youpu.txt.
+
+The APIX Dashboard project contains subcomponents with separate copyright
+notices and license terms. Your use of the source code for the these
+subcomponents is subject to the terms and conditions of the following
+licenses.
+   
 =======================================================================
 Apache APISIX Dashboard Subcomponents:
 
@@ -227,4 +241,4 @@ The following components are provided under the Apache License. See project link
 The text of each license is the standard Apache 2.0 license.
 
    files from kubernetes/dashboard: https://github.com/kubernetes/dashboard/  Apache 2.0
-
+   files from Apache APISIX Dashboard: https://github.com/apache/apisix-dashbaord  Apache 2.0
