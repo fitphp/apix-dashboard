@@ -29,7 +29,7 @@ export default defineConfig({
     hmr: true,
   },
   locale: {
-    default: 'en-US',
+    default: 'zh-CN',
     antd: true,
     baseNavigator: true,
   },
