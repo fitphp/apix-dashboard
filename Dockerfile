@@ -18,16 +18,13 @@
 # Commercial licenses
 # ========================================================================
 # Copyright (c) 2022 Shanghai YOUPU Technology Co., Ltd. all rights reserved
-#
+# ========================================================================
 FROM alpine:latest as pre-build
 
 ARG GATEMAN_VERSION=master
 
-RUN set -x \
-    && apk add --no-cache --virtual .builddeps git \
-    && git clone https://github.com/apache/apisix-dashboard.git -b ${GATEMAN_VERSION} /usr/local/gateman \
-    && cd /usr/local/gateman && git clean -Xdf \
-    && rm -f ./.githash && git log --pretty=format:"%h" -1 > ./.githash
+COPY . /usr/local/gateman
+RUN rm -f .git .github .vscode
 
 FROM golang:1.14 as api-builder
 
