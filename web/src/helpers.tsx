@@ -17,7 +17,7 @@
 import React from 'react';
 import { notification } from 'antd';
 import type { MenuDataItem } from '@ant-design/pro-layout';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, FundOutlined } from '@ant-design/icons';
 import { history } from 'umi';
 import moment from 'moment';
 import YAML from 'yaml';
@@ -66,7 +66,7 @@ export const getMenuData = (): MenuDataItem[] => {
     {
       name: 'serverinfo',
       path: '/serverinfo',
-      icon: <InfoCircleOutlined style={{ marginRight: 6 }} />,
+      icon: <InfoCircleOutlined style={{ marginRight: 16 }} />,
     },
   ];
 };
