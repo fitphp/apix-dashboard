@@ -24,7 +24,7 @@ FROM alpine:latest as pre-build
 ARG GATEMAN_VERSION=master
 
 COPY . /usr/local/gateman
-RUN rm -f .git .github .vscode
+RUN rm -f .git .github .vscode docs
 
 FROM golang:1.14 as api-builder
 
