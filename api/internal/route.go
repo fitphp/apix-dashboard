@@ -18,6 +18,7 @@ package internal
 
 import (
 	"fmt"
+	"github.com/apisix/manager-api/internal/handler/statistic"
 	"path/filepath"
 
 	"github.com/gin-contrib/pprof"
@@ -83,6 +84,7 @@ func SetUpRouter() *gin.Engine {
 		migrate.NewHandler,
 		proto.NewHandler,
 		stream_route.NewHandler,
+		statistic.NewHandler,
 	}
 
 	for i := range factories {
