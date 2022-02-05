@@ -32,7 +32,7 @@ func genToken(username string, issueAt time.Time, expireAt int64) string {
 	claims := jwt.RegisteredClaims{
 		Subject:   username,
 		IssuedAt:   jwt.NewNumericDate(issueAt),
-		ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Duration(expireAt))),
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Second * time.Duration(expireAt))),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	signedToken, _ := token.SignedString([]byte(conf.AuthConf.Secret))
