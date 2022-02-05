@@ -30,6 +30,8 @@ export default {
   },
   title: 'APIX Dashboard',
   pwa: false,
+  headerHeight: 48,
+  splitMenus: false,
   iconfontUrl: '',
   serveUrlMap: {
     dev: 'http://localhost:9000',

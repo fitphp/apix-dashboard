@@ -15,13 +15,14 @@
  * limitations under the License.
  */
 import React, { useEffect, useState } from 'react';
-import { Select, Empty, Form, Card } from 'antd';
+import { Statistic, Row, Col, Select, Empty, Form, Card } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import { useIntl, getIntl } from 'umi';
 import moment from 'moment';
 
-import { fetchInfoList, fetchVersion } from './service';
+import { fetchInfoList, fetchVersion, fetchStatistic } from './service';
 import styles from './style.less';
+
 
 const ServerInfo: React.FC = () => {
   const [data, setData] = useState<ServerInfoModule.Node>();
@@ -32,6 +33,8 @@ const ServerInfo: React.FC = () => {
   const { Option } = Select;
 
   const [form] = Form.useForm();
+
+  const [statisticInfo, setStatisticInfo] = useState<ServerInfoModule.StatisticInfo>();
 
   useEffect(() => {
     fetchInfoList().then((infoList) => {
@@ -61,30 +64,43 @@ const ServerInfo: React.FC = () => {
       setCommitHash(commit_hash);
       setDashboardVersion(version);
     });
+
+    fetchStatistic().then((statisticInfo) => {
+      setStatisticInfo(statisticInfo)
+    });
   }, []);
 
   return (
     <PageContainer title={formatMessage({ id: 'page.systemStatus.pageContainer.title' })}>
-      <Card
-        title={formatMessage({ id: 'page.systemStatus.dashboardInfo' })}
-        bodyStyle={{ padding: 0 }}
-        style={{ marginBottom: 15 }}
-      >
-        <div className={styles.wrap}>
-          <table className={styles.table}>
-            <tbody>
-              <tr>
-                <td>version</td>
-                <td>{dashboardVersion}</td>
-              </tr>
-              <tr>
-                <td>commit_hash</td>
-                <td>{commitHash}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <Card title={formatMessage({ id: 'page.statistic' })} bodyStyle={{ padding: 0 }} bordered={false} style={{ marginBottom: 15 }}>
+        <Row className={styles.row} gutter={16}>
+          <Col span={6}>
+            <Statistic title={formatMessage({ id: 'page.statistic.router' })} value={statisticInfo?.total_route} />
+          </Col>
+          <Col span={6}>
+            <Statistic title={formatMessage({ id: 'page.statistic.service' })} value={statisticInfo?.total_service} />
+          </Col>
+          <Col span={6}>
+            <Statistic title={formatMessage({ id: 'page.statistic.upstream' })} value={statisticInfo?.total_upstream} />
+          </Col>
+          <Col span={6}>
+            <Statistic title={formatMessage({ id: 'page.statistic.consumer' })} value={statisticInfo?.total_consumer} />
+          </Col>
+          <Col span={6}>
+            <Statistic title={formatMessage({ id: 'page.statistic.ssl' })} value={statisticInfo?.total_ssl} />
+          </Col>
+          <Col span={6}>
+            <Statistic title={formatMessage({ id: 'page.systemStatus.nodeInfo' })} value={statisticInfo?.total_server} />
+          </Col>
+          <Col span={6}>
+            <Statistic title={formatMessage({ id: 'page.systemStatus.version' })} value={dashboardVersion} />
+          </Col>
+          <Col span={6}>
+            <Statistic title={formatMessage({ id: 'page.systemStatus.commitHash' })} value={commitHash} />
+          </Col>
+        </Row>
       </Card>
+
       <Card
         title={formatMessage({ id: 'page.systemStatus.nodeInfo' })}
         bodyStyle={{ padding: 0 }}

@@ -21,4 +21,12 @@ export default {
   'page.systemStatus.link': '如何启用？',
   'page.systemStatus.dashboardInfo': '控制面板',
   'page.systemStatus.nodeInfo': '网关节点',
+  'page.systemStatus.version': '控制台版本',
+  'page.systemStatus.commitHash': '提交Hash',
+  'page.statistic' : "统计信息",
+  'page.statistic.ssl' : "证书",
+  'page.statistic.router' : "路由",
+  'page.statistic.service' : "服务",
+  'page.statistic.upstream' : "上游",
+  'page.statistic.consumer' : "消费者",
 };

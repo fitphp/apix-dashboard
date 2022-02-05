@@ -29,4 +29,16 @@ declare namespace ServerInfoModule {
     commit_hash: string;
     version: string;
   };
+
+  /**
+   * 2022-02-05 10:31 add by uptech
+   */
+  type StatisticInfo = {
+    total_ssl: integer;
+    total_route: integer;
+    total_service: integer;
+    total_upstream: integer;
+    total_consumer: integer;
+    total_server: integer;
+  };
 }

@@ -63,11 +63,11 @@ export const getMenuData = (): MenuDataItem[] => {
       path: '/ssl/list',
       icon: <IconFont name="iconssl" />,
     },
-    {
-      name: 'serverinfo',
-      path: '/serverinfo',
-      icon: <InfoCircleOutlined style={{ marginRight: 16 }} />,
-    },
+    // {
+    //   name: 'serverinfo',
+    //   path: '/serverinfo',
+    //   icon: <InfoCircleOutlined style={{ marginRight: 16 }} />,
+    // },
   ];
 };
 
