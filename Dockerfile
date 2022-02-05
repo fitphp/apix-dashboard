@@ -26,7 +26,7 @@ ARG GATEMAN_VERSION=master
 COPY . /usr/local/gateman
 RUN rm -f .git .github .vscode docs
 
-FROM golang:1.14 as api-builder
+FROM golang:1.17 as api-builder
 
 ARG ENABLE_PROXY=false
 
