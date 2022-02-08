@@ -23,6 +23,8 @@ import routes from './routes';
 const { REACT_APP_ENV } = process.env;
 
 export default defineConfig({
+  mfsu: { production: { output: '.mfsu-production' } },
+  webpack5: {},
   hash: true,
   antd: {},
   dva: {

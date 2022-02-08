@@ -32,7 +32,7 @@ RUN set -x \
 
 # RUN rm -f .git .github .vscode docs output web/node_modules
 
-FROM golang:1.17 as api-builder
+FROM golang:1.15 as api-builder
 
 ARG ENABLE_PROXY=false
 
