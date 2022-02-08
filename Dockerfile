@@ -24,9 +24,15 @@ FROM alpine:latest as pre-build
 ARG GATEMAN_VERSION=master
 
 COPY . /usr/local/gateman
-RUN rm -f .git .github .vscode docs
 
-FROM golang:1.17 as api-builder
+RUN set -x \
+    && apk add --no-cache --virtual .builddeps git \
+    && cd /usr/local/gateman && git clean -Xdf \
+    && rm -f ./.githash && git log --pretty=format:"%h" -1 > ./.githash
+
+# RUN rm -f .git .github .vscode docs output web/node_modules
+
+FROM golang:1.15 as api-builder
 
 ARG ENABLE_PROXY=false
 
