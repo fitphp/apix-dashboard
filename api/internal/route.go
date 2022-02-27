@@ -21,7 +21,7 @@ import (
 	"github.com/apisix/manager-api/internal/handler/statistic"
 	"path/filepath"
 
-	"github.com/gin-contrib/pprof"
+	// "github.com/gin-contrib/pprof"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 
@@ -95,7 +95,7 @@ func SetUpRouter() *gin.Engine {
 		h.ApplyRoute(r)
 	}
 
-	pprof.Register(r)
+	// pprof.Register(r)
 
 	return r
 }
