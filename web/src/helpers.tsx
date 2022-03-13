@@ -17,7 +17,7 @@
 import React from 'react';
 import { notification } from 'antd';
 import type { MenuDataItem } from '@ant-design/pro-layout';
-import { InfoCircleOutlined, FundOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, FileTextOutlined } from '@ant-design/icons';
 import { history } from 'umi';
 import moment from 'moment';
 import YAML from 'yaml';
@@ -54,6 +54,11 @@ export const getMenuData = (): MenuDataItem[] => {
       icon: <IconFont name="iconconsumer" />,
     },
     {
+      name: 'proto',
+      path: '/proto/list',
+      icon: <FileTextOutlined />,
+    },
+    {
       name: 'plugin',
       path: '/plugin/list',
       icon: <IconFont name="iconplugin" />,
@@ -63,11 +68,11 @@ export const getMenuData = (): MenuDataItem[] => {
       path: '/ssl/list',
       icon: <IconFont name="iconssl" />,
     },
-    // {
-    //   name: 'serverinfo',
-    //   path: '/serverinfo',
-    //   icon: <InfoCircleOutlined style={{ marginRight: 16 }} />,
-    // },
+    {
+      name: 'serverinfo',
+      path: '/serverinfo',
+      icon: <InfoCircleOutlined style={{ marginRight: 6 }} />,
+    },
   ];
 };
 
