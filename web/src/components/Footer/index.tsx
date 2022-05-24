@@ -23,7 +23,11 @@ import { DefaultFooter } from '@ant-design/pro-layout';
 
 export default () => (
   <DefaultFooter
+<<<<<<< HEAD
     copyright="2022 APIX"
+=======
+    copyright={`${new Date().getFullYear()} Apache APISIX`}
+>>>>>>> upstream
     links={[
       // {
       //   key: '官网',
