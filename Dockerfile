@@ -17,7 +17,7 @@
 # ========================================================================
 # Commercial licenses
 # ========================================================================
-# Copyright (c) 2022 Shanghai YOUPU Technology Co., Ltd. all rights reserved
+# Copyright (c) 2022 Shanghai UPTech Co., Ltd. all rights reserved
 # ========================================================================
 FROM alpine:latest as pre-build
 

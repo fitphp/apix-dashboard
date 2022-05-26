@@ -16,18 +16,14 @@
  */
 /**
  * Commercial License
- * Copyright (c) 2022 Shanghai YOUPU Technology Co., Ltd. all rights reserved
+ * Copyright (c) 2022 Shanghai UPTech Co., Ltd. all rights reserved
  */
 import React from 'react';
 import { DefaultFooter } from '@ant-design/pro-layout';
 
 export default () => (
   <DefaultFooter
-<<<<<<< HEAD
-    copyright="2022 APIX"
-=======
-    copyright={`${new Date().getFullYear()} Apache APISIX`}
->>>>>>> upstream
+    copyright={`${new Date().getFullYear()} APIX`}
     links={[
       // {
       //   key: '官网',
