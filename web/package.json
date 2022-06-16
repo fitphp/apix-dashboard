@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "apix-dashboard",
   "version": "2.11.0",
+=======
+  "name": "apisix-dashboard",
+  "version": "2.13.0",
+>>>>>>> upstream/master
   "private": true,
   "description": "Dashboard for APIX",
   "scripts": {
