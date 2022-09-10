@@ -28,11 +28,10 @@ import {
   Select,
   Radio,
   Form,
-  Upload,
   Modal,
-  Divider,
   Menu,
   Dropdown,
+  Table,
   Tooltip,
 } from 'antd';
 import { history, useIntl } from 'umi';
@@ -46,7 +45,6 @@ import { omit } from 'lodash';
 
 import { DELETE_FIELDS } from '@/constants';
 import { timestampToLocaleString } from '@/helpers';
-import type { RcFile } from 'antd/lib/upload';
 
 import {
   update,
@@ -56,18 +54,17 @@ import {
   fetchLabelList,
   updateRouteStatus,
   exportRoutes,
-  importRoutes,
 } from './service';
 import { DebugDrawView } from './components/DebugViews';
 import { RawDataEditor } from '@/components/RawDataEditor';
 import { EXPORT_FILE_MIME_TYPE_SUPPORTED } from './constants';
+import DataLoaderImport from '@/pages/Route/components/DataLoader/Import';
 
 const { OptGroup, Option } = Select;
 
 const Page: React.FC = () => {
   const ref = useRef<ActionType>();
   const { formatMessage } = useIntl();
-  const [exportFileTypeForm] = Form.useForm();
 
   enum RouteStatus {
     Offline = 0,
@@ -81,8 +78,7 @@ const Page: React.FC = () => {
 
   const [labelList, setLabelList] = useState<LabelList>({});
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
-  const [uploadFileList, setUploadFileList] = useState<RcFile[]>([]);
-  const [showImportModal, setShowImportModal] = useState(false);
+  const [showImportDrawer, setShowImportDrawer] = useState(false);
   const [visible, setVisible] = useState(false);
   const [rawData, setRawData] = useState<Record<string, any>>({});
   const [id, setId] = useState('');
@@ -100,6 +96,8 @@ const Page: React.FC = () => {
       setSelectedRowKeys(currentSelectKeys);
     },
     preserveSelectedRowKeys: true,
+    selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT, Table.SELECTION_NONE],
+    defaultSelectedRowKeys: [1],
   };
 
   const handleTableActionSuccessResponse = (msgTip: string) => {
@@ -154,26 +152,6 @@ const Page: React.FC = () => {
     });
   };
 
-  const handleImport = () => {
-    const formData = new FormData();
-    if (!uploadFileList[0]) {
-      notification.warn({
-        message: formatMessage({ id: 'page.route.button.selectFile' }),
-      });
-      return;
-    }
-    formData.append('file', uploadFileList[0]);
-
-    importRoutes(formData).then(() => {
-      handleTableActionSuccessResponse(
-        `${formatMessage({ id: 'page.route.button.importOpenApi' })} ${formatMessage({
-          id: 'component.status.success',
-        })}`,
-      );
-      setShowImportModal(false);
-    });
-  };
-
   const ListToolbar = () => {
     const tools = [
       {
@@ -193,11 +171,10 @@ const Page: React.FC = () => {
         },
       },
       {
-        name: formatMessage({ id: 'page.route.button.importOpenApi' }),
+        name: formatMessage({ id: 'page.route.data_loader.import' }),
         icon: <ImportOutlined />,
         onClick: () => {
-          setUploadFileList([]);
-          setShowImportModal(true);
+          setShowImportDrawer(true);
         },
       },
     ];
@@ -292,6 +269,7 @@ const Page: React.FC = () => {
   };
 
   const ListFooter: React.FC = () => {
+    const [exportFileTypeForm] = Form.useForm();
     return (
       <Popconfirm
         title={
@@ -331,7 +309,7 @@ const Page: React.FC = () => {
     {
       title: formatMessage({ id: 'component.global.name' }),
       dataIndex: 'name',
-      fixed: 'left',
+      width: 150,
     },
     {
       title: formatMessage({ id: 'component.global.id' }),
@@ -347,8 +325,8 @@ const Page: React.FC = () => {
         const list = record.hosts || (record.host && [record.host]) || [];
 
         return list.map((item) => (
-          <Tooltip placement="topLeft" title={item}>
-            <Tag key={item} color="geekblue" style={tagStyle}>
+          <Tooltip key={item} placement="topLeft" title={item}>
+            <Tag color="geekblue" style={tagStyle}>
               {item}
             </Tag>
           </Tooltip>
@@ -363,8 +341,8 @@ const Page: React.FC = () => {
         const list = record.uris || (record.uri && [record.uri]) || [];
 
         return list.map((item) => (
-          <Tooltip placement="topLeft" title={item}>
-            <Tag key={item} color="geekblue" style={tagStyle}>
+          <Tooltip key={item} placement="topLeft" title={item}>
+            <Tag color="geekblue" style={tagStyle}>
               {item}
             </Tag>
           </Tooltip>
@@ -391,6 +369,8 @@ const Page: React.FC = () => {
           ));
       },
       renderFormItem: (_, { type }) => {
+        console.log(labelList);
+
         if (type === 'form') {
           return null;
         }
@@ -567,6 +547,33 @@ const Page: React.FC = () => {
         actionRef={ref}
         rowKey="id"
         columns={columns}
+        rowSelection={rowSelection}
+        tableAlertRender={() => (
+          <Space size={24}>
+            <span>
+              {formatMessage({ id: 'page.route.chosen' })} {selectedRowKeys.length}{' '}
+              {formatMessage({ id: 'page.route.item' })}
+            </span>
+          </Space>
+        )}
+        tableAlertOptionRender={() => {
+          return (
+            <Space size={16}>
+              <Button
+                onClick={async () => {
+                  await remove(selectedRowKeys).then(() => {
+                    handleTableActionSuccessResponse(
+                      `${formatMessage({ id: 'component.global.delete.routes.success' })}`,
+                    );
+                  });
+                  ref.current?.reloadAndRest?.();
+                }}
+              >
+                {formatMessage({ id: 'page.route.batchDeletion' })}
+              </Button>
+            </Space>
+          );
+        }}
         request={fetchList}
         pagination={{
           onChange: (page, pageSize?) => savePageList(page, pageSize),
@@ -584,9 +591,7 @@ const Page: React.FC = () => {
           </Button>,
           <ListToolbar />,
         ]}
-        rowSelection={rowSelection}
         footer={() => <ListFooter />}
-        tableAlertRender={false}
         scroll={{ x: 1300 }}
       />
       <DebugDrawView
@@ -612,45 +617,14 @@ const Page: React.FC = () => {
           );
         }}
       />
-      <Modal
-        title={formatMessage({ id: 'page.route.button.importOpenApi' })}
-        visible={showImportModal}
-        okText={formatMessage({ id: 'component.global.confirm' })}
-        onOk={handleImport}
-        onCancel={() => {
-          setShowImportModal(false);
-        }}
-      >
-        <Upload
-          fileList={uploadFileList as any}
-          beforeUpload={(file) => {
-            setUploadFileList([file]);
-            return false;
+      {showImportDrawer && (
+        <DataLoaderImport
+          onClose={(finish) => {
+            if (finish) checkPageList(ref);
+            setShowImportDrawer(false);
           }}
-          onRemove={() => {
-            setUploadFileList([]);
-          }}
-        >
-          <Button type="primary" icon={<ImportOutlined />}>
-            {formatMessage({ id: 'page.route.button.selectFile' })}
-          </Button>
-        </Upload>
-        <Divider />
-        <div>
-          <p>{formatMessage({ id: 'page.route.instructions' })}:</p>
-          <p>
-            <a
-              href="https://apisix.apache.org/docs/dashboard/IMPORT_OPENAPI_USER_GUIDE"
-              target="_blank"
-            >
-              1.{' '}
-              {`${formatMessage({ id: 'page.route.import' })} ${formatMessage({
-                id: 'page.route.instructions',
-              })}`}
-            </a>
-          </p>
-        </div>
-      </Modal>
+        />
+      )}
     </PageHeaderWrapper>
   );
 };
