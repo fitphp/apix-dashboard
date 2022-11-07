@@ -66,7 +66,7 @@ conf:
   #   access_control_allow_headers: "Authorization"
   #   access_control-allow_methods: "*"
   #   x_frame_options: "deny"
-  #   content_security_policy: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; frame-src xx.xx.xx.xx:3000"  # You can set frame-src to provide content for your grafana panel.
+  #   content_security_policy: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src xx.xx.xx.xx:3000"  # You can set frame-src to provide content for your grafana panel.
 
 authentication:
   secret:
@@ -82,11 +82,13 @@ authentication:
 
 oidc:
   expire_time: 3600
-  app_name: authing
-  client_id:
-  client_secret:
-  scope: oidc
-  redirect_uri: oidc/callback
+  client_id: dashboard
+  client_secret: dashboard
+  auth_url: http://172.17.0.1:8080/auth/realms/master/protocol/openid-connect/auth
+  token_url: http://172.17.0.1:8080/auth/realms/master/protocol/openid-connect/token
+  user_info_url: http://172.17.0.1:8080/auth/realms/master/protocol/openid-connect/userinfo
+  redirect_url: http://127.0.0.1:9000/apisix/admin/oidc/callback
+  scope: openid
 
 plugins:                          # plugin list (sorted in alphabetical order)
   - api-breaker
