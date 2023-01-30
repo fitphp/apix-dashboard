@@ -1,13 +1,8 @@
 {
-<<<<<<< HEAD
-  "name": "apix-dashboard",
-  "version": "2.11.0",
-=======
   "name": "apisix-dashboard",
-  "version": "2.13.0",
->>>>>>> upstream/master
+  "version": "3.0.0",
   "private": true,
-  "description": "Dashboard for APIX",
+  "description": "Dashboard for Apache APISIX",
   "scripts": {
     "prepare": "cd .. && husky install web/.husky",
     "analyze": "cross-env ANALYZE=1 yarn run build",

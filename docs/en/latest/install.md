@@ -48,7 +48,7 @@ Please replace `<CONFIG_FILE>` to your configure file path.
 
 ```shell
 # 1. install RPM package
-sudo yum install -y https://github.com/apache/apisix-dashboard/releases/download/v2.13/apisix-dashboard-2.13-0.el7.x86_64.rpm
+sudo yum install -y https://github.com/apache/apisix-dashboard/releases/download/v3.0.0/apisix-dashboard-3.0.0-0.el7.x86_64.rpm
 ```
 
 ### Launch
@@ -75,7 +75,7 @@ Before using source codes to build, make sure that the following dependencies ar
 
 For `manager-api`:
 
-1. [Golang](https://golang.org/dl/) 1.13+
+1. [Golang](https://golang.org/dl/) 1.16+
 
 > Tip: For users in mainland China, you can use the following command to speed up the module downloads.
 
@@ -91,7 +91,7 @@ For `web`:
 ### Download {#source-download}
 
 ```shell
-git clone -b release/2.13 https://github.com/apache/apisix-dashboard.git && cd apisix-dashboard
+git clone -b release/3.0 https://github.com/apache/apisix-dashboard.git && cd apisix-dashboard
 ```
 
 ### Build {#source-build}

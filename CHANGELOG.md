@@ -19,6 +19,10 @@
 
 # Table of Contents
 
+- [3.0.0](#300)
+- [2.15.0](#2150)
+- [2.14.0](#2140)
+- [2.13.1](#2131)
 - [2.13.0](#2130)
 - [2.11.0](#2110)
 - [2.10.1](#2101)
@@ -38,6 +42,95 @@
 - [2.0.0](#200)
 - [1.5.0](#150)
 - [1.0.0](#100)
+
+## 3.0.0
+
+### Core
+
+- feat: basic support Apache APISIX 3.0.0 [#2701](https://github.com/apache/apisix-dashboard/pull/2701)
+- feat: change etcd prefix for ssl and proto [#2693](https://github.com/apache/apisix-dashboard/pull/2693)
+
+### Bugfix
+
+- fix: remove cases external service dependency [#2697](https://github.com/apache/apisix-dashboard/pull/2697)
+- fix: adapt APISIX plugin disabled [#2717](https://github.com/apache/apisix-dashboard/pull/2717)
+- fix: plugin configuration lost in editor [#2718](https://github.com/apache/apisix-dashboard/pull/2718)
+
+### Other
+
+- chore: optimize "allow_origins_by_regex tooltip" description [#2690](https://github.com/apache/apisix-dashboard/pull/2690)
+- chore: simplify e2e env [#2694](https://github.com/apache/apisix-dashboard/pull/2694)
+
+## 2.15.0
+
+### Core
+
+- feat: basic support Apache APISIX 2.15.0 [#2680](https://github.com/apache/apisix-dashboard/pull/2680)
+
+### Bugfix
+
+- fix: bump go version to 1.16 [#2678](https://github.com/apache/apisix-dashboard/pull/2678)
+
+## 2.14.0
+
+### Core
+
+- feat: basic support Apache APISIX 2.14.1 [#2464](https://github.com/apache/apisix-dashboard/pull/2464)
+- feat: refactor OpenAPI 3 parse and convert [#2460](https://github.com/apache/apisix-dashboard/pull/2460)
+- feat: integrate data loader interface to import handler [#2474](https://github.com/apache/apisix-dashboard/pull/2474)
+- feat: support data loader in frontend [#2480](https://github.com/apache/apisix-dashboard/pull/2480)
+- feat: translating Turkish for new features [#2487](https://github.com/apache/apisix-dashboard/pull/2487)
+- feat: add batch delete function for route [#2502](https://github.com/apache/apisix-dashboard/pull/2502)
+- feat: support show all enable plugin list tab [#2585](https://github.com/apache/apisix-dashboard/pull/2585)
+- feat: Add config struct of OpenID-Connect Login [#2597](https://github.com/apache/apisix-dashboard/pull/2597)
+- feat: Adding a Loading state to buttons [#2630](https://github.com/apache/apisix-dashboard/pull/2630)
+- feat: add login filter of OpenID-Connect [#2608](https://github.com/apache/apisix-dashboard/pull/2608)
+- feat: add etcd store auto re-initialize [#2650](https://github.com/apache/apisix-dashboard/pull/2650)
+- feat: add enable flag to oidc function [#2672](https://github.com/apache/apisix-dashboard/pull/2672)
+- feat: support purge method [#2674](https://github.com/apache/apisix-dashboard/pull/2674)
+- feat: support more upstream scheme [#2675](https://github.com/apache/apisix-dashboard/pull/2675)
+
+### Docs
+
+- docs: add data loader and new OpenAPI 3 loader [#2484](https://github.com/apache/apisix-dashboard/pull/2484)
+- docs: add new import and export docs to sidebar [#2485](https://github.com/apache/apisix-dashboard/pull/2485)
+- docs: update deploy-with-docker.md [#2472](https://github.com/apache/apisix-dashboard/pull/2472)
+- docs: add a notice about the compatibility of Ingress and Dashboard [#2552](https://github.com/apache/apisix-dashboard/pull/2552)
+- docs: add correct csp rule [#2548](https://github.com/apache/apisix-dashboard/pull/2548)
+- docs: add Slack invitation link badge [#2617](https://github.com/apache/apisix-dashboard/pull/2617)
+
+### Bugfix
+
+- fix: advance matching in the route create page causes the page to crash [#2440](https://github.com/apache/apisix-dashboard/pull/2440)
+- fix: Users can create a Consumer in Dashboard without enabling the plugin [#2442](https://github.com/apache/apisix-dashboard/pull/2442)
+- fix: block arbitrary file index [#2497](https://github.com/apache/apisix-dashboard/pull/2497)
+- fix: route duplicate ID [#2501](https://github.com/apache/apisix-dashboard/pull/2501)
+- fix: add a judgement for last_report_time [#2551](https://github.com/apache/apisix-dashboard/pull/2551)
+- fix: drawer components delete plugin not working [#2573](https://github.com/apache/apisix-dashboard/pull/2573)
+- fix: page refresh causes deletion exception [#2593](https://github.com/apache/apisix-dashboard/pull/2593)
+- fix: plugin_config missing on service exist [#2657](https://github.com/apache/apisix-dashboard/pull/2657)
+- fix: ant-table unable to request [#2641](https://github.com/apache/apisix-dashboard/pull/2641)
+- fix: change default CSP value [#2601](https://github.com/apache/apisix-dashboard/pull/2601)
+
+### Test
+
+- test: remove stale E2E cases [#2475](https://github.com/apache/apisix-dashboard/pull/2475)
+- fix: cli test invalid etcd [#2544](https://github.com/apache/apisix-dashboard/pull/2544)
+- feat: fix actions version to root version [#2521](https://github.com/apache/apisix-dashboard/pull/2521)
+- test: reduce fe ci time [#2557](https://github.com/apache/apisix-dashboard/pull/2557)
+- feat: set serverUrlMap with env, update cypress, update stylelint [#2583](https://github.com/apache/apisix-dashboard/pull/2583)
+- feat: add tip and preset model for plugin editor, improve e2e stability [#2581](https://github.com/apache/apisix-dashboard/pull/2581)
+
+### Other
+
+- feat: dashboard support windows [#2619](https://github.com/apache/apisix-dashboard/pull/2619)
+- feat: configure eslint plugins to support format import and export [#2647](https://github.com/apache/apisix-dashboard/pull/2647)
+
+## 2.13.1
+
+**This is a maintenance release, and you can see the CHANGELOG in `release/2.13` branch.**
+
+[https://github.com/apache/apisix-dashboard/blob/release/2.13/CHANGELOG.md#2131](https://github.com/apache/apisix-dashboard/blob/release/2.13/CHANGELOG.md#2131)
 
 # 2.13.0
 
