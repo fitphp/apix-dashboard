@@ -14,7 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM alpine:latest as pre-build
+ARG BUILDPLATFORM=amd64
+
+FROM --platform=$BUILDPLATFORM alpine:latest as pre-build
 
 ARG APISIX_DASHBOARD_VERSION=master
 
@@ -24,7 +26,7 @@ RUN set -x \
     && cd /usr/local/apisix-dashboard && git clean -Xdf \
     && rm -f ./.githash && git log --pretty=format:"%h" -1 > ./.githash
 
-FROM golang:1.19 as api-builder
+FROM --platform=$BUILDPLATFORM golang:1.19 as api-builder
 
 ARG ENABLE_PROXY=false
 
@@ -36,7 +38,7 @@ RUN if [ "$ENABLE_PROXY" = "true" ] ; then go env -w GOPROXY=https://goproxy.io,
     && go env -w GO111MODULE=on \
     && CGO_ENABLED=0 ./api/build.sh
 
-FROM node:16-alpine as fe-builder
+FROM --platform=$BUILDPLATFORM node:16-alpine as fe-builder
 
 ARG ENABLE_PROXY=false
 
